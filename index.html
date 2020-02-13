@@ -1,0 +1,154 @@
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+  
+  <dl id="container"></dl>
+<script>
+
+
+// Python: glob.glob('twitter-data/*.js')
+var files = ['twitter-data/direct-messages-group.js',
+ 'twitter-data/branch-links.js',
+ 'twitter-data/profile.js',
+ 'twitter-data/periscope-expired-broadcasts.js',
+ 'twitter-data/moment.js',
+ 'twitter-data/direct-messages.js',
+ 'twitter-data/mute.js',
+ 'twitter-data/ad-online-conversions-attributed.js',
+ 'twitter-data/ad-mobile-conversions-attributed.js',
+ 'twitter-data/phone-number.js',
+ 'twitter-data/account-suspension.js',
+ 'twitter-data/follower.js',
+ 'twitter-data/tweet.js',
+ 'twitter-data/like.js',
+ 'twitter-data/lists-member.js',
+ 'twitter-data/periscope-comments-made-by-user.js',
+ 'twitter-data/periscope-ban-information.js',
+ 'twitter-data/direct-message-headers.js',
+ 'twitter-data/periscope-profile-description.js',
+ 'twitter-data/screen-name-change.js',
+ 'twitter-data/direct-message-group-headers.js',
+ 'twitter-data/saved-search.js',
+ 'twitter-data/ad-online-conversions-unattributed.js',
+ 'twitter-data/lists-subscribed.js',
+ 'twitter-data/block.js',
+ 'twitter-data/account-creation-ip.js',
+ 'twitter-data/periscope-broadcast-metadata.js',
+ 'twitter-data/email-address-change.js',
+ 'twitter-data/account.js',
+ 'twitter-data/lists-created.js',
+ 'twitter-data/contact.js',
+ 'twitter-data/ad-engagements.js',
+ 'twitter-data/device-token.js',
+ 'twitter-data/ad-impressions.js',
+ 'twitter-data/ad-mobile-conversions-unattributed.js',
+ 'twitter-data/protected-history.js',
+ 'twitter-data/following.js',
+ 'twitter-data/account-timezone.js',
+ 'twitter-data/personalization.js',
+ 'twitter-data/ageinfo.js',
+ 'twitter-data/periscope-account-information.js',
+ 'twitter-data/connected-application.js',
+ 'twitter-data/verified.js',
+ 'twitter-data/periscope-followers.js',
+ 'twitter-data/ni-devices.js',
+ 'twitter-data/ip-audit.js'];
+ 
+ /* Python:
+ YTD = {}
+ for file in glob.glob('twitter-data/*.js'):
+    with open(file, 'r') as f:
+        # 1e ligne
+        variable = f.readline().split('=')[0]
+        parts = variable.split('.')
+        YTD[ parts[2] ] = { parts[3]: {} }
+*/
+
+ window.YTD = {'direct_messages_group': {},
+ 'branch_links': {},
+ 'profile': {},
+ 'periscope_expired_broadcasts': {},
+ 'moment': {},
+ 'direct_messages': {},
+ 'mute': {},
+ 'ad_online_conversions_attributed': {},
+ 'ad_mobile_conversions_attributed': {},
+ 'phone_number': {},
+ 'account_suspension': {},
+ 'follower': {},
+ 'tweet': {},
+ 'like': {},
+ 'lists_member': {},
+ 'periscope_comments_made_by_user': {},
+ 'periscope_ban_information': {},
+ 'direct_message_headers': {},
+ 'periscope_profile_description': {},
+ 'screen_name_change': {},
+ 'direct_message_group_headers': {},
+ 'saved_search': {},
+ 'ad_online_conversions_unattributed': {},
+ 'lists_subscribed': {},
+ 'block': {},
+ 'account_creation_ip': {},
+ 'periscope_broadcast_metadata': {},
+ 'email_address_change': {},
+ 'account': {},
+ 'lists_created': {},
+ 'contact': {},
+ 'ad_engagements': {},
+ 'device_token': {},
+ 'ad_impressions': {},
+ 'ad_mobile_conversions_unattributed': {},
+ 'protected_history': {},
+ 'following': {},
+ 'account_timezone': {},
+ 'personalization': {},
+ 'ageinfo': {},
+ 'periscope_account_information': {},
+ 'connected_application': {},
+ 'verified': {},
+ 'periscope_followers': {},
+ 'ni_devices': {},
+ 'ip_audit': {}};
+ 
+ var loadedFiles = 0;
+ 
+ function addScript( src ) {
+   var s = document.createElement( 'script' );
+   s.setAttribute( 'src', src );
+   s.onload = function () {
+    loadedFiles += 1;
+    if(loadedFiles >= 46){
+      // all variables loaded
+      console.log('All files loaded');
+      displayData();
+    }
+   };
+   try{
+     document.body.appendChild( s );
+   }
+   catch (e){
+     console.log(e);
+   }
+ }
+ files.map(addScript);
+ 
+ function displayData(){
+   for(key in window.YTD){
+     console.log(window.YTD[key]);
+     var dt = document.createElement( 'dt' );
+     dt.innerText = key;
+     var dd = document.createElement( 'dd' );
+     dd.innerHTML = JSON.stringify(window.YTD[key]);
+     document.getElementById('container').append(dt);
+     document.getElementById('container').append(dd);
+   }
+ }
+ 
+ 
+ 
+</script>
+</body>
+</html>
